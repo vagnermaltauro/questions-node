@@ -2,6 +2,16 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const port = 3000;
+const connection = require("./database/database.js");
+
+connection
+    .authenticate()
+    .then(() => {
+        console.log("database connected");
+    })
+    .catch(() => {
+        console.log("error connect database");
+    })
 
 app.set("view engine", "ejs");
 

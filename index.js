@@ -22,7 +22,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-    res.render("index.ejs");
+    importModel.findAll({ raw: true }).then(answer => {
+        res.render("index.ejs", {
+            receiveAnswer: answer,
+        });
+    });
 });
 
 app.get("/questions", (req, res) => {

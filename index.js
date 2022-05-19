@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const port = 3000;
 const connection = require("./database/database.js");
+const importModel = require("./database/Question.js");
 
 connection
     .authenticate()
@@ -31,7 +32,12 @@ app.get("/questions", (req, res) => {
 app.post("/savequestions", (req, res) => {
     let title = req.body.title;
     let describe = req.body.describe;
-    res.send("received answer " + "title " + title + " description " + describe);
+    importModel.create({
+        title: title,
+        description: describe,
+    }).then(() => {
+        res.redirect("/")
+    });
 });
 
 app.listen(port, () => {

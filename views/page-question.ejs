@@ -1,0 +1,41 @@
+<%- include ("partials/header.ejs") %>
+
+
+    <body>
+        <%- include ("partials/navbar") %>
+
+            <div class="container">
+
+                <hr>
+                <h1>
+                    <%= sendInfo.title %>
+                </h1>
+                <br>
+                <p>
+                    <%= sendInfo.description %>
+                </p>
+                <hr>
+                <form method="post" action="/answ">
+                    <h3>Response:</h3>
+                    <textarea placeholder="Type your answer" class="form-control" name="bodyAnswer"></textarea>
+                    <input type="hidden" name="idAnswer" value="<%= sendInfo.id %>">
+                    <br>
+                    <button type="submit" class="btn btn-success">RESPONSE</button>
+                </form>
+                <br>
+                <hr>
+                <h3>ANSWERS: </h3>
+
+                <% returnAnswer.forEach(x=> { %>
+                    <br>
+                    <div class="card">
+                        <div class="car-body">
+                            <p>
+                                <%= x.bodyRes %>
+                            </p>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+    </body>
+    <%- include ("partials/footer") %>

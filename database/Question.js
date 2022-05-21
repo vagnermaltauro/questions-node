@@ -1,6 +1,7 @@
 const sequelize = require("sequelize");
 const connection = require("./database.js");
 
+// CREATE A TABLE "question" IN DATABASE 
 const question = connection.define("question", {
     title: {
         type: sequelize.STRING,
@@ -12,6 +13,7 @@ const question = connection.define("question", {
     },
 });
 
+// SYNCING WITH THE DATABASE
 question.sync({ force: false }).then(() => {
     console.log("table created!");
 });
